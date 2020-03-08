@@ -49,7 +49,7 @@ def edycja(request, pk):
 
 def rejestracja_view(request):
     next = request.GET.get('next')
-    form = UserRegisterForm(request.POST or None)
+    form = UserRegistrationForm(request.POST or None)
     if form.is_valid():
         user = form.save(commit=False)
         password = form.cleaned_data.get('password')

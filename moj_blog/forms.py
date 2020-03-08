@@ -10,7 +10,7 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ('tytul', 'tresc')
 
-class UserRegistrationForm(forms.ModelForm):
+class UserRegisterForm(forms.ModelForm):
     email = forms.EmailField(label='Email address')
     email2 = forms.EmailField(label='Confirm Email')
     password = forms.CharField(widget=forms.PasswordInput)
@@ -33,4 +33,4 @@ class UserRegistrationForm(forms.ModelForm):
         if email_qs.exists():
             raise forms.ValidationError(
                 "This email has already been registered")
-        return super(UserRegistrationForm, self).clean(*args, **kwargs)
+        return super(UserRegisterForm, self).clean(*args, **kwargs)

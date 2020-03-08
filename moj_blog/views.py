@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from .models import Post
 from django.utils import timezone
 from django.shortcuts import redirect
-from .forms import PostForm, UserRegistrationForm
+from .forms import PostForm, UserRegisterForm
 # Create your views here.
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
@@ -49,7 +49,7 @@ def edycja(request, pk):
 
 def rejestracja_view(request):
     next = request.GET.get('next')
-    form = UserRegistrationForm(request.POST or None)
+    form = UserRegisterForm(request.POST or None)
     if form.is_valid():
         user = form.save(commit=False)
         password = form.cleaned_data.get('password')
@@ -61,6 +61,6 @@ def rejestracja_view(request):
             return redirect(next)
         return redirect('/')
     else:
-        form = UserRegistrationForm()
+        form = UserRegisterForm()
 
     return render(request, "moj_blog/rejestracja.html", {'form': form,})
